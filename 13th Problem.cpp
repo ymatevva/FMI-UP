@@ -30,6 +30,12 @@ int main()
             std :: cout << num << " = " << i << " + " << num - i << std :: endl;
             break;
         }
+          else
+        {
+
+            std :: cout << std :: boolalpha << false << std :: endl;
+            break;
+        }
     }
     return 0;
 }
