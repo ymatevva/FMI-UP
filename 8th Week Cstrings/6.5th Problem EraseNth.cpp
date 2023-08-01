@@ -44,7 +44,7 @@ int main()
 
     int N;//Nth occurrence of the symbol
     std :: cin >> N;
-    //4th Problem To erase the first occurrence of a given symbol
+    //5th Problem To erase the Nth occurrence of a given symbol
 
     eraseSymbol(word,symbol, N);
     std :: cout << "The word without the first occurrence of the symbol is: " << word << std :: endl;
