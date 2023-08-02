@@ -21,7 +21,7 @@ int main()
     char sentence[MAX_SIZE/2][MAX_SIZE];
     int wordCounter = 0;
     int index = 0;
-    int prevWasPunct = false;
+    bool prevWasPunct = false;
     char c;
     while(std::cin.get(c))//while inputing symbols
     {
