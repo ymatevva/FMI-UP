@@ -12,13 +12,16 @@ bool equalRings(int matrix[][MAX_SIZE], int N, int &row, int &col) {
     for (int layer = 0; layer <= N / 2; ++layer)
     {
         int sumOuter = 0;
-
         for (int i = layer; i < N - layer; ++i) {
-            sumOuter += matrix[layer][i] + matrix[N - 1 - layer][i];
-            if (i > layer && i < N - 1 - layer) {
-                sumOuter += matrix[i][layer] + matrix[i][N - 1 - layer];
-            }
+            sumOuter += matrix[layer][i]; // Top row
+            sumOuter += matrix[N - 1 - layer][i]; // Bottom row
         }
+
+        for (int i = layer + 1; i < N - 1 - layer; ++i) {
+            sumOuter += matrix[i][layer]; // Left column (excluding corners)
+            sumOuter += matrix[i][N - 1 - layer]; // Right column (excluding corners)
+        }
+       
         if (sumOuter != innerSum) {
             row = layer;
             col = layer;
