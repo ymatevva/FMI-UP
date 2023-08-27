@@ -6,8 +6,8 @@ bool isAdj(int number)
 
     while(number > 1)
     {
-        int prevDigit = number %10;
-        int currDigit = (number/=10)%10;
+        int currDigit = number %10;
+        int prevDigit = (number/=10)%10;
         if (currDigit == prevDigit )
         {
             return false;
