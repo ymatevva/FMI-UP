@@ -1,20 +1,23 @@
 #include <iostream>
 const int MAX_SIZE = 50;
-int maxDeletedNum(const int arr[], int n)
+int minDeletedNum(const int arr[], int n)
 {
-    int maxDel = INT_MIN;
+    int minDel = INT_MAX;
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n-1; ++i)
+    {
 
             if (arr[i+1] != arr[i]+1)
             {
-                if (arr[i]+1 > maxDel)
+                if (arr[i]+1 < minDel)
                 {
-                    maxDel = arr[i]+1;
+                    minDel = arr[i]+1;
                 }
             }
+            else
+                continue;
     }
-    return maxDel;
+    return minDel;
 }
 int main()
 {
@@ -25,13 +28,12 @@ int main()
 
     for (int i = 0; i < n; ++i)
     {
-        for (int j = 0; j < n; ++j)
-        {
             std :: cin >> arr[i];
-        }
     }
 
-   std :: cout << maxDeletedNum(arr,n) << std :: endl;
+    int minDeletedNumber = minDeletedNum(arr,n);
+
+   std :: cout << minDeletedNumber << std :: endl;
 
 
     return 0;
