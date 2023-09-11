@@ -18,7 +18,7 @@ int numWords(char *str)
             count++;
         }
 
-        else if (str[i] == ' ')
+        else if (!isalpha(str[i]))
         {
             if (isTExt)
             {
