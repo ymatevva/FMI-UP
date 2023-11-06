@@ -5,12 +5,13 @@ void printFigure(int n)
 
 	int counter = 1;
 
-	for (int i = 1; i <= n+2; i++)
+	for (int i = 1; i < n+2; i++)
 	{
-		std::cout << "#" << " ";
+		std::cout << "# ";
 	}
 
 	std::cout << std::endl;
+	
 	for (int i = 1; i <= n; i++)
 	{
 		std::cout << "#" << " ";
@@ -18,7 +19,7 @@ void printFigure(int n)
 		{
 			for (int j = counter; j <= i*n; j++)
 			{
-				std::cout << j << " ";;
+				std::cout << j << (j < 10 ) ? " " : " ");
 			}
 		}
 
@@ -26,7 +27,7 @@ void printFigure(int n)
 		{
 			for (int j = i*n; j >= counter; j--)
 			{
-				std::cout << j << " ";
+				std::cout << j << (j < 10 ) ? " " : " ");
 			}
 		}
 		counter += n;
@@ -35,19 +36,11 @@ void printFigure(int n)
 		std::cout << std::endl;
 	}
 
-	for (int i = 1; i <= n+2; i++)
+	for (int i = 1; i < n+2; i++)
 	{
 		std::cout << "#" << " ";
 	}
-
-
-
 }
-
-
-
-
-
 int main()
 {
 	int n;
