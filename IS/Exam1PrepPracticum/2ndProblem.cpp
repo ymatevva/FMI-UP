@@ -1,52 +1,111 @@
 #include<iostream>
+constexpr int MAX_SIZE = 100;
 
-bool isAscending(unsigned int number)
+bool wordSymbol(char ch)
 {
-	while (number > 9)
+	return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+}
+
+unsigned int getWordsCount(const char* str)
+{
+	if (!str)
+		return 0;
+
+	unsigned int count = 0;
+	while (*str)
 	{
-		int currDigit = number % 10;
-		int prevDigit = (number / 10) % 10;
+		if (wordSymbol(*str) && !wordSymbol(*(str + 1)))
+			count++;
 
-		if (currDigit < prevDigit)
-			return false;
-
-		number /= 10;
+		str++;
 	}
-	return true;
+	return count;
 }
 
-bool isInterestingNumber(unsigned int n)
+unsigned getSize(const char* str)
 {
-	if (isAscending(n) || (n >= 0 && n <= 9))
-		return  true;
+	if (!str)
+		return 0;
 
-	return false;
-}
+	unsigned int count = 0;
+	unsigned int space = 0;
+	unsigned int countWords = getWordsCount(str);
 
-void interestingNumbers(const int arr[], size_t size)
-{
-	for (size_t i = 0; i < size; i++)
+	while (*str && wordSymbol(*str))
 	{
-		if (isInterestingNumber(arr[i]))
-			std::cout << "YES" << std::endl;
-		else
-			std::cout << "NO" << std::endl;
+		count++;
+		str++;
 	}
+
+	while (*str)
+	{
+		if (wordSymbol(*str) && !wordSymbol(*(str + 1)))
+			space++;
+
+		if (space == countWords - 1 && wordSymbol(*str))
+			count++;
+
+		str++;
+	}
+	return count;
 }
+
+unsigned int mySTrLen(const char* str)
+{
+	if (!str)
+		return 0;
+
+	unsigned int count = 0;
+
+	while (*str)
+	{
+		count++;
+		str++;
+	}
+	return count;
+}
+
+char* concatFirstAndLast(const char* str)
+{
+	if (!str)
+		return nullptr;
+
+	size_t newSize = getSize(str) + 2;
+	char* result = new char[newSize];
+
+	unsigned int resInd = 0;
+	result[newSize - 1] = '\0';
+
+	unsigned int space = 0;
+	unsigned int countWords = getWordsCount(str);
+
+	size_t revInd = newSize - 2;
+
+		while (wordSymbol(*str) )
+		{
+			result[resInd++] = *str;
+	     	str++;
+	    }
+	
+		result[resInd++] = ' ';
+
+		size_t lengthStr = mySTrLen(str);
+		for (int i = lengthStr-1; i >= 0 && wordSymbol(str[i]); i--)
+		{
+			result[revInd--] = str[i];
+		}
+
+	return result;
+}
+
 int main()
 {
-	constexpr int MAX_SIZE = 1024;
+	char str[MAX_SIZE];
+	std::cin.getline(str, MAX_SIZE);
 
-	unsigned int N;
-	std::cin >> N;
+	char* res = concatFirstAndLast(str);
+	std::cout << res << std::endl;
 
-	int numbers[MAX_SIZE];
-
-	for (size_t i = 0; i < N; i++)
-	{
-		std::cin >> numbers[i];
-	}
-
-	interestingNumbers(numbers, N);
+	delete[] res;
 	return 0;
 }
