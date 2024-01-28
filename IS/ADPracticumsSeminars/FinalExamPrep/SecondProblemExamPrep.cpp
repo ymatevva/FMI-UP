@@ -95,9 +95,10 @@ bool isPalAfterTransformation(char* str)
 	}
 
 	newStr[newInd] = '\0';
-	return isPalindrome(newStr);
+	bool isPalFlag = isPalindrome(newStr);
 
 	delete[] newStr;
+	return isPalFlag;
 
 }
 int main()
