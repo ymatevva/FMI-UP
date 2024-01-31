@@ -10,13 +10,16 @@ unsigned binarySearch(const int* arr, size_t length, int el)
 	{
 		int mid = left + (rigth - left) / 2;
 
-		if ((arr[mid] <= el && arr[mid + 1] >= el) || (arr[mid] <= el && mid + 1 == length))
-			return mid+1;
+		if ((arr[mid] <= el && arr[mid + 1] > el) || (arr[mid] <= el && mid + 1 == length))
+			return mid + 1;
+
+		if (arr[mid] >= el && mid - 1 <= 0)
+			return 0;
 
 		else if (arr[mid] > el)
 			rigth = mid - 1;
 
-		else 
+		else
 			left = mid + 1;
 	}
 	return -1;
